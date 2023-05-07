@@ -6,7 +6,6 @@ const geocode = (address, callback) => {
 
   // Make an HTTP request to the specified URL and parse the response as JSON
   request({ url: URL, json: true }, (error, response) => {
-    console.log(response.body.data[0]);
     if (error) {
       callback('Unable to find location!', undefined);
     } else {
