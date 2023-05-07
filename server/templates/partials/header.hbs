@@ -1,0 +1,60 @@
+<header>
+  <nav class="nav">
+    <ul class="nav__list">
+      <li class="nav__list__item"><a
+          class="nav__list__item__link"
+          href="/"
+        >Weather</a></li>
+      <li class="nav__list__item"><a
+          class="nav__list__item__link"
+          href="/about"
+        >About</a></li>
+      <li class="nav__list__item"><a
+          class="nav__list__item__link"
+          href="/Help"
+        >Help</a></li>
+    </ul>
+  </nav>
+  <div class="search__field">
+    <form class="search__form" id="form">
+      <label class="search__label" for="search">Search input</label>
+      <input
+        class="search__input"
+        id="search"
+        type="text"
+        placeholder="Enter city name..."
+        aria-describedby="error-message"
+      />
+      <span
+        id="error-message"
+        class="error__message hidden"
+        aria-live="polite"
+      >Please provide a valid location!</span>
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="search__icon"
+        width="21"
+        height="21"
+        viewBox="0 0 21 21"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9.625 16.625C13.491 16.625 16.625 13.491 16.625 9.625C16.625 5.75901 13.491 2.625 9.625 2.625C5.75901 2.625 2.625 5.75901 2.625 9.625C2.625 13.491 5.75901 16.625 9.625 16.625Z"
+          stroke="#D6CECE"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M18.3751 18.375L14.5688 14.5688"
+          stroke="#D6CECE"
+          stroke-width="3"
+          stroke-linecap="roun    d"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </form>
+  </div>
+</header>

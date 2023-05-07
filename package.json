@@ -1,0 +1,32 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch:sass": "sass --watch client/css/scss/app.scss client/css/styles/style.css --style compressed",
+    "devstart": "nodemon server/src/app.js -e js,hbs",
+    "start": "npm-run-all --parallel devstart watch:sass",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint --fix .js",
+    "format": "prettier --write . --ext .js,hbs",
+    "format:check": "prettier --check --ext .js,hbs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "hbs": "^4.2.0",
+    "request": "^2.88.2",
+    "sass": "^1.62.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.40.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.22",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.8"
+  }
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles/style.css">
+    <script src="/js/script.js" defer></script>
+    <title>{{title}}</title>
+</head>
+<body>
+    {{>header}}
+    <main class="main">
+        <div id="main__content" class="container">
+            <div class="left">
+                <div>
+                    <h1 id="weather__location">Hello world city, philippines</h1>
+                    <p id="weather__time">as of 8:00 am</p>
+                </div>
+                <div class="temperature__container">
+                    <p id="weather__temperature" class="temperature">11℃</p>
+                    <p id="weather__date">Monday, 1:00, 14 Apr 2023</p>
+                    <span id="weather__description">Mostly cloudy</span>
+                </div>
+            </div>
+            <div class="right">
+                <img src="/assets/images/weather.png" alt="weather">
+                <div class="weather__details__container">
+                    <div class="weather__details__items"> 
+                        <img src="/assets/icons/humidity.svg" alt="water drops">
+                        <p>Humidity</p>
+                        <p id="weather__humidity__value" class="details__value">30%</p>
+                    </div>
+                    <div class="weather__details__items">
+                        <img src="/assets/icons/wind.svg" alt="wind">
+                        <p>Wind</p>
+                        <p id="weather__wind__value" class="details__value">8km/h</p>
+                    </div>
+                    <div class="weather__details__items">
+                        <img src="/assets/icons/cloudy.svg" alt="cloud">
+                        <p>Cloudy</p>
+                        <p id="weather__cloudy__value" class="details__value">64%</p>
+                    </div>
+                    <div class="weather__details__items">
+                        <img src="/assets/icons/visibility.svg" alt="eye">
+                        <p>Visibility</p>
+                        <p id="weather__visibility__value" class="details__value">3km</p>
+                    </div>
+                    <div class="weather__details__items">
+                        <img src="/assets/icons/uvindex.svg" alt="sunsise">
+                        <p>UV index</p>
+                        <p id="weather__uvindex__value" class="details__value">5</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+        <div class="data__error hidden">
+            <h1 class="data__error__message"></h1>
+        </div>
+    {{>footer}} 
+</body>
+</html>
