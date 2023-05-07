@@ -7,7 +7,7 @@ This is a simple web app that allows you to search for weather information by lo
 To use this app, you will need to obtain API keys from Positionstack and Weatherstack. Once you have those, you can create a `.env` file in the root directory of the project and add the following variables:
 
 ```html
-    POSITION_API_KEY=<your_mapbox_api_key_here>
+    POSITION_API_KEY=<your_position_api_key_here>
     WEATHERSTACK_API_KEY=<your_weatherstack_api_key_here>
 ```
 Then, you can install the dependencies using `npm install` and start the app with `npm run start`.
