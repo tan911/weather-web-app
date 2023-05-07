@@ -100,6 +100,8 @@ form.addEventListener('submit', (e) => {
       .then((data) => {
         if (data.error) {
           displayDataError(data.error);
+          main.classList.add('hidden');
+          data__error.classList.remove('hidden');
           throw new Error(data.error);
         } else {
           renderData(data);
@@ -108,8 +110,6 @@ form.addEventListener('submit', (e) => {
         }
       })
       .catch((err) => {
-        main.classList.add('hidden');
-        data__error.classList.remove('hidden');
         console.log(err);
       });
 
