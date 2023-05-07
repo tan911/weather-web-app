@@ -1,11 +1,13 @@
+require('dotenv').config();
 const request = require('request');
 
 const geocode = (address, callback) => {
-  const URL = `http://api.positionstack.com/v1/forward?access_key=937a49e0f637e025b2faee3ac93241d1&query=${address}`;
+  const URL = `http://api.positionstack.com/v1/forward?access_key=${process.env.POSITIONSTACK_ACCESS_KEY}&query=${address}`;
 
   // Make an HTTP request to the specified URL and parse the response as JSON
   request({ url: URL, json: true }, (error, response) => {
-    if (error || !error) {
+    console.log(response.body.data[0]);
+    if (error) {
       callback('Unable to find location!', undefined);
     } else {
       callback(undefined, {
