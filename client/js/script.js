@@ -118,7 +118,4 @@ form.addEventListener('submit', (e) => {
   }
 });
 
-// Inpirations
-// 1. https://www.youtube.com/watch?v=CMp4Gjuv6L0
-// 2. https://www.youtube.com/watch?v=V_ATWwBVqoQ
-// 3. glassmorphism - https://www.youtube.com/watch?v=w5KGPoDJJhg
+
