@@ -20,3 +20,5 @@ jobs:
       - run: bats -v
       - name: Check review
         run: echo "Review needed for this pull request"
+      env:
+        GITHUB_TOKEN: ${{ secrets.G__TOKEN }}
