@@ -1,8 +1,9 @@
 name: review-needed-learning-github-actions
 run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
 on: 
-  pull_request_review_requested:
-    types: [review_requested]
+  pull_request:
+    branches:
+      - main 
   push: 
     branches:
       - main
