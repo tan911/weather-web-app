@@ -1,0 +1,22 @@
+name: review-needed-learning-github-actions
+run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
+on: 
+  pull_request_review_requested:
+    types: [review_requested]
+  push: 
+    branches:
+      - main
+
+jobs: 
+  check_review:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Check bats version
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with: 
+          node-version: '14'
+      - run: npm install -g bats
+      - run: bats -v
+      - name: Check review
+        run: echo "Review needed for this pull request"
