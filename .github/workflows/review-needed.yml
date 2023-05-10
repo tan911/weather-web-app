@@ -15,41 +15,33 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Request review
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.G__TOKEN }}
+          title: 'Review needed before deployment'
           reviewers: tan911 
           assignees: tan911 
-          title: 'Please review and approve before deployment'
-          body: 'Please review and approve this pull request before it can be deployed to production.'
-      - name: Wait for approval
-        id: approval
-        uses: github-script@v4
-        with:
-          github-token: ${{ secrets.G__TOKEN }}
-          script: |
-            const { data } = await github.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number
-            });
-            return { approvals: data.reviews.filter(review => review.state === 'APPROVED').length }
-      - name: Check approvals
-        run: |
-          if [ $(( $(echo ${{ steps.approval.outputs.approvals }}) )) -lt 1 ]; then
-            echo "Not enough approvals. Cancelling deployment."
-            exit 1
-          fi
+          labels: 'needs-review'
+          body: 'Please review and approve before deployment'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     needs: review
     runs-on: ubuntu-latest
     steps:
+      - name: Wait for approvals
+        uses: pullreminders/label-when-approved-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          approved_label: 'approved'
+          unapproved_label: 'needs-review'
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20.0.0
         with:
           vercel-token: ${{ secrets.VERCEL__TOKEN }}
           vercel-project-id: ${{ secrets.VERCEL__PROJECT__ID }}
+
+
 
 
 
