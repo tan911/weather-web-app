@@ -8,16 +8,6 @@ on:
     branches:
       - main
 
-name: Review-needed-before-deployment
-
-on:
-  pull_request:
-    branches:
-      - main
-  push:
-    branches:
-      - main
-
 jobs:
   review:
     runs-on: ubuntu-latest
