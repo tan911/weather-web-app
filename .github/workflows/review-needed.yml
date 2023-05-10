@@ -1,12 +1,9 @@
-name: review-needed
+name: Review-needed-before-deployment
+
 on:
   pull_request:
     branches:
       - main
-    types:
-      - opened
-      - edited
-      - synchronize
   push:
     branches:
       - main
@@ -17,5 +14,27 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Review required
-        run: echo "This pull request or push to main requires review."
+      - name: Request review
+        uses: peter-evans/create-pull-request-review@v1
+        with:
+          github-token: ${{ secrets.G__TOKEN }}
+          reviewers: tan911 
+          assignees: tan911 
+          approve: false
+          comment: Please review and approve before deployment
+      - name: Wait for approval
+        uses: andymckay/wait-for-approval@v1
+        with:
+          github-token: ${{ secrets.G__TOKEN }}
+          wait-for-approvals: true
+
+  deploy:
+    needs: review
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20.0.0
+        with:
+          vercel-token: ${{ secrets.VERCEL__TOKEN }}
+          vercel-project-id: ${{ secrets.VERCEL__PROJECT__ID }}
+
