@@ -15,26 +15,71 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Request review
-        uses: peter-evans/create-pull-request-review@v1
+        uses: peter-evans/create-pull-request@v5
         with:
-          github-token: ${{ secrets.G__TOKEN }}
+          title: 'Review needed before deployment'
           reviewers: tan911 
           assignees: tan911 
-          approve: false
-          comment: Please review and approve before deployment
-      - name: Wait for approval
-        uses: andymckay/wait-for-approval@v1
-        with:
-          github-token: ${{ secrets.G__TOKEN }}
-          wait-for-approvals: true
+          labels: 'needs-review'
+          body: 'Please review and approve before deployment'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     needs: review
     runs-on: ubuntu-latest
     steps:
+      - name: Wait for approvals
+        uses: pullreminders/approval-count-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          approvals: 1
+          continue-on-error: false
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20.0.0
         with:
           vercel-token: ${{ secrets.VERCEL__TOKEN }}
           vercel-project-id: ${{ secrets.VERCEL__PROJECT__ID }}
+
+
+
+# name: Review-needed-before-deployment
+
+# on:
+#   pull_request:
+#     branches:
+#       - main
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   review:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+#       - name: Request review
+#         uses: peter-evans/create-pull-request-review@v5
+#         with:
+#           github-token: ${{ secrets.G__TOKEN }}
+#           reviewers: tan911 
+#           assignees: tan911 
+#           approve: false
+#           comment: Please review and approve before deployment
+#       - name: Wait for approval
+#         uses: andymckay/wait-for-approval@v1
+#         with:
+#           github-token: ${{ secrets.G__TOKEN }}
+#           wait-for-approvals: true
+
+#   deploy:
+#     needs: review
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Deploy to Vercel
+#         uses: amondnet/vercel-action@v20.0.0
+#         with:
+#           vercel-token: ${{ secrets.VERCEL__TOKEN }}
+#           vercel-project-id: ${{ secrets.VERCEL__PROJECT__ID }}
 
