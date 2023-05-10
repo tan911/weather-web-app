@@ -1,18 +1,21 @@
-name: review-needed-learning-github-actions
-on: 
+name: review-needed
+on:
   pull_request:
     branches:
-      - main 
-  push: 
+      - main
+    types:
+      - opened
+      - edited
+      - synchronize
+  push:
     branches:
       - main
 
-jobs: 
-  check_review:
+jobs:
+  review:
     runs-on: ubuntu-latest
-    steps: 
-      - name: Check bats version
-        run: npm install -g bats
-      - name: Check review
-        uses: actions/checkout@v3
-        run: echo "Review needed for this pull request"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Review required
+        run: echo "This pull request or push to main requires review."
